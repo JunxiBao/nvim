@@ -34,48 +34,4 @@ return {
       })
     end,
   },
-
-  -- 2. nvim-treesitter 插件配置
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    opts = {
-      ensure_installed = { "latex" }, -- 确保安装 latex 的语法支持
-      highlight = {
-        enable = true, -- 启用语法高亮
-      },
-    },
-  },
-
-  -- 3. nvim-cmp 插件配置
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp", -- LSP 补全
-      "hrsh7th/cmp-buffer", -- 缓冲区补全
-      "hrsh7th/cmp-path", -- 文件路径补全
-      "saadparwaiz1/cmp_luasnip", -- Snippets 支持
-    },
-    config = function()
-      local cmp = require("cmp")
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            require("luasnip").lsp_expand(args.body) -- 使用 LuaSnip
-          end,
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<Tab>"] = cmp.mapping.select_next_item(), -- Tab 切换补全项
-          ["<S-Tab>"] = cmp.mapping.select_prev_item(), -- Shift+Tab 切换
-          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- 回车确认补全
-        }),
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "buffer" },
-          { name = "path" },
-        }),
-      })
-    end,
-  },
 }
