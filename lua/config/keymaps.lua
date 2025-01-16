@@ -3,3 +3,4 @@
 -- Add any additional keymaps here
 local keymap = vim.keymap
 keymap.set("i", "jj", "<Esc>")
+vim.keymap.set("n", "<leader>ch", "<cmd>Telescope neoclip<cr>", { desc = "Clipboard History" })
