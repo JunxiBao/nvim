@@ -3,3 +3,6 @@
 -- Add any additional options here
 vim.o.number = true -- 启用绝对行号
 vim.o.relativenumber = true -- 启用相对行号
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.foldenable = true
