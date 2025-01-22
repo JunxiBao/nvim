@@ -1,40 +1,45 @@
 return {
-  "wfxr/minimap.vim",
-  build = "cargo install --locked code-minimap",
-  config = function()
-    -- 设置 minimap 的宽度
-    vim.g.minimap_width = 15
+  "Isrothy/neominimap.nvim",
+  version = "v3.*.*",
+  enabled = true,
+  lazy = false, -- NOTE: NO NEED to Lazy load
+  -- Optional
+  keys = {
+    -- Global Minimap Controls
+    { "<leader>nm", "<cmd>Neominimap toggle<cr>", desc = "Toggle global minimap" },
+    { "<leader>no", "<cmd>Neominimap on<cr>", desc = "Enable global minimap" },
+    { "<leader>nc", "<cmd>Neominimap off<cr>", desc = "Disable global minimap" },
+    { "<leader>nr", "<cmd>Neominimap refresh<cr>", desc = "Refresh global minimap" },
 
-    -- 启动时自动打开 minimap
-    vim.g.minimap_auto_start = 1
+    -- Window-Specific Minimap Controls
+    { "<leader>nwt", "<cmd>Neominimap winToggle<cr>", desc = "Toggle minimap for current window" },
+    { "<leader>nwr", "<cmd>Neominimap winRefresh<cr>", desc = "Refresh minimap for current window" },
+    { "<leader>nwo", "<cmd>Neominimap winOn<cr>", desc = "Enable minimap for current window" },
+    { "<leader>nwc", "<cmd>Neominimap winOff<cr>", desc = "Disable minimap for current window" },
 
-    -- 进入窗口时自动启动 minimap
-    vim.g.minimap_auto_start_win_enter = 1
+    -- Tab-Specific Minimap Controls
+    { "<leader>ntt", "<cmd>Neominimap tabToggle<cr>", desc = "Toggle minimap for current tab" },
+    { "<leader>ntr", "<cmd>Neominimap tabRefresh<cr>", desc = "Refresh minimap for current tab" },
+    { "<leader>nto", "<cmd>Neominimap tabOn<cr>", desc = "Enable minimap for current tab" },
+    { "<leader>ntc", "<cmd>Neominimap tabOff<cr>", desc = "Disable minimap for current tab" },
 
-    -- 高亮搜索结果
-    vim.g.minimap_highlight_search = 1
+    -- Buffer-Specific Minimap Controls
+    { "<leader>nbt", "<cmd>Neominimap bufToggle<cr>", desc = "Toggle minimap for current buffer" },
+    { "<leader>nbr", "<cmd>Neominimap bufRefresh<cr>", desc = "Refresh minimap for current buffer" },
+    { "<leader>nbo", "<cmd>Neominimap bufOn<cr>", desc = "Enable minimap for current buffer" },
+    { "<leader>nbc", "<cmd>Neominimap bufOff<cr>", desc = "Disable minimap for current buffer" },
 
-    -- 在 minimap 中使用 Git 颜色高亮
-    vim.g.minimap_git_colors = 1
+    ---Focus Controls
+    { "<leader>nf", "<cmd>Neominimap focus<cr>", desc = "Focus on minimap" },
+    { "<leader>nu", "<cmd>Neominimap unfocus<cr>", desc = "Unfocus minimap" },
+    { "<leader>ns", "<cmd>Neominimap toggleFocus<cr>", desc = "Switch focus on minimap" },
+  },
+  init = function()
+    vim.opt.wrap = false
+    vim.opt.sidescrolloff = 36 -- Set a large value
 
-    -- 指定不显示 minimap 的文件类型
-    vim.g.minimap_block_filetypes = { "NvimTree", "TelescopePrompt", "dashboard", "packer", "lazy" }
-
-    -- 使用 Visual 模式高亮光标
-    vim.g.minimap_cursor_highlight = "Visual"
-
-    -- 同步滚动
-    vim.g.minimap_sync_scroll = 1
-
-    -- 设置 minimap 的更新频率（毫秒）
-    vim.g.minimap_update_rate = 50
-
-    -- 检查是否安装了 code-minimap
-    if vim.fn.executable("code-minimap") == 0 then
-      vim.api.nvim_err_writeln(
-        "Error: code-minimap not found. Please install it by running 'cargo install --locked code-minimap'."
-      )
-    end
+    vim.g.neominimap = {
+      auto_enable = true,
+    }
   end,
-  cmd = { "Minimap", "MinimapClose", "MinimapToggle" },
 }
