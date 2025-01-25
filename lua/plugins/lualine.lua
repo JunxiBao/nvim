@@ -1,3 +1,4 @@
+---@diagnostic disable: duplicate-index
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
