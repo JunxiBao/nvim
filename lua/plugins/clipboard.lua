@@ -15,7 +15,6 @@ return {
           i = {
             paste = "<cr>", -- 粘贴选中内容
             delete = "<c-d>", -- 删除选中内容
-            quit = "<c-q>",
           },
         },
       },

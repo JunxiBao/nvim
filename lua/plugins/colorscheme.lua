@@ -1,42 +1,27 @@
--- LazyVim configuration with Kanagawa theme
--- Ensure to save this file in your plugin directory or configuration setup.
-
 return {
   {
-    "rebelot/kanagawa.nvim",
-    lazy = false, -- Load immediately for seamless experience
-    priority = 1000, -- Ensures it loads first
+    "navarasu/onedark.nvim",
     config = function()
-      require("kanagawa").setup({
-        compile = true, -- Enable compiled colorscheme for faster startup
-        undercurl = true, -- Enables undercurl for better emphasis
-        commentStyle = { italic = true },
-        functionStyle = { bold = true },
-        keywordStyle = { italic = true },
-        variablebuiltinStyle = { bold = true },
-        specialReturn = true, -- Highlight return keywords
-        specialException = true, -- Highlight exception keywords
-        dimInactive = true, -- Dim inactive windows for focus
-        globalStatus = true, -- Use global status line
-        colors = {
-          theme = {
-            all = {
-              ui = {
-                bg_gutter = "none", -- Remove gutter background
-              },
-            },
-          },
+      require("onedark").setup({
+        style = "cool", -- 可选：'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light'
+        transparent = true, -- 设置透明背景
+        term_colors = true, -- 使用终端颜色
+        ending_tildes = true, -- 取消空行波浪线
+        cmp_itemkind_reverse = false, -- 不反转补全菜单的图标顺序
+        code_style = {
+          comments = "italic", -- 注释斜体
+          keywords = "bold", -- 关键字加粗
+          functions = "bold,italic", -- 函数加粗斜体
+          strings = "none", -- 字符串样式
+          variables = "none", -- 变量样式
         },
-        overrides = function(colors)
-          return {
-            NormalFloat = { bg = colors.palette.sumiInk2 },
-            FloatBorder = { bg = colors.palette.sumiInk2 },
-            Pmenu = { bg = colors.palette.sumiInk1 },
-            PmenuSel = { bg = colors.palette.waveBlue1 },
-          }
-        end,
+        diagnostics = {
+          darker = true, -- 更深的诊断颜色
+          undercurl = true, -- 启用下划线
+          background = true, -- 禁用诊断背景色
+        },
       })
-      vim.cmd("colorscheme kanagawa")
+      require("onedark").load()
     end,
   },
 }
