@@ -8,3 +8,4 @@ vim.keymap.set("n", "<leader>ch", "<cmd>Telescope neoclip<cr>", { desc = "Clipbo
 vim.api.nvim_set_keymap("n", "<Leader>so", ":SymbolsOutline<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>mwc", ":echo wordcount().words<CR>", { desc = "Count words" })
 vim.keymap.set("n", "<Leader>mcc", ":echo wordcount().chars<CR>", { desc = "Count chars" })
+vim.keymap.set("n", "<Leader>mfm", ":lua vim.lsp.buf.format()<CR>", { desc = "format" })
