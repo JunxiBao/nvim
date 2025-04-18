@@ -1,27 +1,23 @@
+-- 这是一个 LazyVim 插件配置文件，用于安装和设置 tokyonight 主题
 return {
   {
-    "navarasu/onedark.nvim",
-    config = function()
-      require("onedark").setup({
-        style = "cool", -- 可选：'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light'
-        transparent = true, -- 设置透明背景
-        term_colors = true, -- 使用终端颜色
-        ending_tildes = true, -- 取消空行波浪线
-        cmp_itemkind_reverse = false, -- 不反转补全菜单的图标顺序
-        code_style = {
-          comments = "italic", -- 注释斜体
-          keywords = "bold", -- 关键字加粗
-          functions = "bold,italic", -- 函数加粗斜体
-          strings = "none", -- 字符串样式
-          variables = "none", -- 变量样式
-        },
-        diagnostics = {
-          darker = true, -- 更深的诊断颜色
-          undercurl = true, -- 启用下划线
-          background = true, -- 禁用诊断背景色
-        },
-      })
-      require("onedark").load()
+    "folke/tokyonight.nvim",
+    lazy = false,       -- 启动时加载
+    priority = 1000,    -- 提高优先级，防止被其他主题覆盖
+    opts = {
+      style = "moon",   -- 可选: night, storm, moon, day
+      transparent = false,
+      terminal_colors = true,
+      styles = {
+        comments = { italic = true },
+        keywords = { italic = true },
+        functions = {},
+        variables = {},
+      },
+    },
+    config = function(_, opts)
+      require("tokyonight").setup(opts)
+      vim.cmd.colorscheme("tokyonight")
     end,
   },
 }
